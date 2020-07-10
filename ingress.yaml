@@ -10,3 +10,9 @@ spec:
       - backend:
           serviceName: alpaca-prod 
           servicePort: 8080
+  - host: bandicoot-prod.estudo.com.br
+    http:
+      paths:
+      - backend:
+          serviceName: bandicoot-prod 
+          servicePort: 8080
