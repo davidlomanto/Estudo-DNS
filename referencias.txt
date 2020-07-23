@@ -1,0 +1,7 @@
+1 - Livro: Kubernetes Up & Running. Brendan Burns, Joe Beda & Kelsey Hightower. 
+Second Edition
+
+2 - Traefik: https://docs.traefik.io/
+
+3 - k3d: https://github.com/rancher/k3d
+

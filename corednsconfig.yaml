@@ -22,12 +22,22 @@ data:
         loadbalance
     }
   NodeHosts: 172.18.0.2 k3d-k3s-default-server
-  estudo.com.br: "$ORIGIN estudo.com.br.\n@\t3600 IN\tSOA sns.dns.icann.org. noc.dns.icann.org.
-    (\n\t\t\t\t2017042745 ; serial\n\t\t\t\t7200       ; refresh (2 hours)\n\t\t\t\t3600
-    \      ; retry (1 hour)\n\t\t\t\t1209600    ; expire (2 weeks)\n\t\t\t\t3600       ;
-    minimum (1 hour)\n\t\t\t\t)\n\n\t3600 IN NS a.iana-servers.net.\n\t3600 IN NS
-    b.iana-servers.net.\n\nalpaca-prod     IN A     10.43.137.204\nbandicoot-prod
-    \    IN A     10.43.176.65"
+  estudo.com.br: |
+      $ORIGIN estudo.com.br.
+      @ 3600 IN SOA sns.dns.icann.org. noc.dns.icann.org. (
+      2017042745 ; serial
+      7200 ; refresh (2 hours)
+      3600 ; retry (1 hour)
+      1209600 ; expire (2 weeks)
+      3600 ; minimum (1 hour)
+      )
+
+      3600 IN NS a.iana-servers.net.
+      3600 IN NS b.iana-servers.net.
+      
+      alpaca-prod IN A 10.43.137.204
+      bandicoot-prod IN A 10.43.176.65
+      
 kind: ConfigMap
 metadata:
   annotations:
