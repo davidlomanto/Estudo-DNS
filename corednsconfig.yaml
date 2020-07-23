@@ -1,0 +1,47 @@
+apiVersion: v1
+data:
+  Corefile: |
+    .:53 {
+        errors
+        health
+        ready
+        kubernetes cluster.local in-addr.arpa ip6.arpa {
+          pods insecure
+          upstream
+          fallthrough in-addr.arpa ip6.arpa
+        }
+        hosts /etc/coredns/NodeHosts {
+          reload 1s
+          fallthrough
+        }
+        prometheus :9153
+        forward . /etc/resolv.conf
+        cache 30
+        loop
+        reload
+        loadbalance
+    }
+  NodeHosts: 172.18.0.2 k3d-k3s-default-server
+  estudo.com.br: "$ORIGIN estudo.com.br.\n@\t3600 IN\tSOA sns.dns.icann.org. noc.dns.icann.org.
+    (\n\t\t\t\t2017042745 ; serial\n\t\t\t\t7200       ; refresh (2 hours)\n\t\t\t\t3600
+    \      ; retry (1 hour)\n\t\t\t\t1209600    ; expire (2 weeks)\n\t\t\t\t3600       ;
+    minimum (1 hour)\n\t\t\t\t)\n\n\t3600 IN NS a.iana-servers.net.\n\t3600 IN NS
+    b.iana-servers.net.\n\nalpaca-prod     IN A     10.43.137.204\nbandicoot-prod
+    \    IN A     10.43.176.65"
+kind: ConfigMap
+metadata:
+  annotations:
+    objectset.rio.cattle.io/applied: '{"apiVersion":"v1","data":{"Corefile":".:53
+      {\n    errors\n    health\n    ready\n    kubernetes cluster.local in-addr.arpa
+      ip6.arpa {\n      pods insecure\n      upstream\n      fallthrough in-addr.arpa
+      ip6.arpa\n    }\n    hosts /etc/coredns/NodeHosts {\n      reload 1s\n      fallthrough\n    }\n    prometheus
+      :9153\n    forward . /etc/resolv.conf\n    cache 30\n    loop\n    reload\n    loadbalance\n}\n"},"kind":"ConfigMap","metadata":{"annotations":{"objectset.rio.cattle.io/id":"","objectset.rio.cattle.io/owner-gvk":"k3s.cattle.io/v1,
+      Kind=Addon","objectset.rio.cattle.io/owner-name":"coredns","objectset.rio.cattle.io/owner-namespace":"kube-system"},"labels":{"objectset.rio.cattle.io/hash":"bce283298811743a0386ab510f2f67ef74240c57"},"name":"coredns","namespace":"kube-system"}}'
+    objectset.rio.cattle.io/id: ""
+    objectset.rio.cattle.io/owner-gvk: k3s.cattle.io/v1, Kind=Addon
+    objectset.rio.cattle.io/owner-name: coredns
+    objectset.rio.cattle.io/owner-namespace: kube-system
+  labels:
+    objectset.rio.cattle.io/hash: bce283298811743a0386ab510f2f67ef74240c57
+  name: coredns
+  namespace: kube-system
