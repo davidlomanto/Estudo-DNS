@@ -21,6 +21,12 @@ data:
         reload
         loadbalance
     }
+    estudo.com.br:53 {
+    cache 30
+    file /etc/coredns/estudo.com.br
+    forward . /etc/resolv.conf
+    log
+    }
   NodeHosts: 172.18.0.2 k3d-k3s-default-server
   estudo.com.br: |
       $ORIGIN estudo.com.br.
